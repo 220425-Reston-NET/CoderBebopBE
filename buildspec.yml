@@ -25,5 +25,5 @@ phases:
 
 artifacts:
   files:
-    - 'dockerfile'
+    - 'Dockerfile'
     - 'publish/**/*'
