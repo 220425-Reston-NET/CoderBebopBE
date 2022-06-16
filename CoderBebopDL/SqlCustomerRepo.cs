@@ -13,7 +13,7 @@ namespace CoderBebopDL
             this._connectionString = connectionString;
         }
 
-        public void Add(Customer p_resource)
+        public void AddCus(Customer p_resource)
         {
             string SQLQuery = @"insert into Customer
                                 values (@CusName,@CusPhone,@CusAddress,@cusEmail)";
@@ -32,14 +32,48 @@ namespace CoderBebopDL
             }
         }
 
+        public void AddJoin(Customer p_resource)
+        {
+            string SQLQuery = @"insert into CusCard
+                                 values (@CusID,@PinID,@CardNumber,@AccountNumber)";
+
+             using (SqlConnection con = new SqlConnection(_connectionString))
+             {
+                 con.Open();
+                 SqlCommand command = new SqlCommand(SQLQuery, con);
+
+                 command.Parameters.AddWithValue("@CusID", p_resource.CustID);
+                 command.Parameters.AddWithValue("@PinID", p_resource.PinID);
+                 command.Parameters.AddWithValue("@CardNumber", p_resource.CardNumber);
+                 command.Parameters.AddWithValue("@AccountNumber", p_resource.AccNumber);    
+
+                 command.ExecuteNonQuery();
+             }
+        }
+
         public void AddPin(Customer p_resource)
         {
-            throw new NotImplementedException();
+             string SQLQuery = @"insert into Pin
+                               values (@Pin)";
+
+         using (SqlConnection con = new SqlConnection(_connectionString))
+             {
+
+                 con.Open();
+
+                 SqlCommand command = new SqlCommand(SQLQuery, con);
+
+                 command.Parameters.AddWithValue("@Pin", p_resource.Pin);
+
+                 command.ExecuteNonQuery();
+             }
         }
 
         public List<Customer> GetAll()
         {
-            string SQLQuery = @"Select * from Customer";
+            string SQLQuery = @"select c.CusName, c.CusPhone, c.CusAddress, c.cusEmail, cu.AccNumber from Customer c
+                                inner join CusCard cu on c.CusID = cu.CusID
+                                inner join pin p on cu.PinID = p.PinID;";
             List<Customer> listofcustomer = new List<Customer>();
 
             using (SqlConnection con = new SqlConnection(_connectionString))
@@ -54,10 +88,11 @@ namespace CoderBebopDL
                 {
                     listofcustomer.Add(new Customer(){
 
-                        Name = reader.GetString(1),
-                        Phone = reader.GetString(2),
-                        Address = reader.GetString(3),
-                        Email = reader.GetString(4)
+                        Name = reader.GetString(0),
+                        Phone = reader.GetString(1),
+                        Address = reader.GetString(2),
+                        Email = reader.GetString(3),
+                        AccNumber = reader.GetDecimal(4)
                     });
                 }
                 
@@ -67,7 +102,23 @@ namespace CoderBebopDL
 
         public void verify(decimal p_resource, int p_resource1)
         {
-            throw new NotImplementedException();
+            string SQLQuery = @"select c.CusName, c.CusPhone, c.CusAddress, cu.AccNumber from Customer c
+                                 inner join CusCard cu on c.CusID = cu.CusID
+                                 inner join pin p on cu.PinID = p.PinID
+                                 where cu.CardNumber = @CardNumber and p.Pin = @Pin";
+
+             using(SqlConnection con = new SqlConnection(_connectionString))
+             {
+                 con.Open();
+
+                 SqlCommand command = new SqlCommand(SQLQuery, con);
+
+
+                 command.Parameters.AddWithValue("@CardNumber", p_resource);
+                 command.Parameters.AddWithValue("@Pin", p_resource1);
+
+                 command.ExecuteNonQuery();
+             }
         }
     }
 }
