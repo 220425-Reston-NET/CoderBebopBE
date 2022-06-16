@@ -4,7 +4,7 @@ namespace CoderBebopBL
 {
     public interface iCustomerBL
     {
-        void AddCus(string p_Name, string p_Phone, string p_Address, string p_Email);
+        void AddCus(Customer p_addAll);
 
         void AddPin(int p_pin);
 

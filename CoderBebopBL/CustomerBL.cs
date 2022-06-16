@@ -5,21 +5,26 @@ namespace CoderBebopBL
 {
     public class CustomerBL : iCustomerBL
     {
-        Customer AddData = new Customer();
+    
         private readonly iCoderBebopDL<Customer> _Customer;
         public CustomerBL(iCoderBebopDL<Customer> p_Customer)
         {
             _Customer = p_Customer;
         }
 
-        public void AddCus(string p_Name, string p_Phone, string p_Address, string p_Email)
+        public void AddCus(Customer p_AddAll)
         {
-            AddData.Name = p_Name;
-            AddData.Phone = p_Phone;
-            AddData.Address = p_Address;
-            AddData.Email = p_Email;
+            p_AddAll.CustID = p_AddAll.PinID;
 
-            _Customer.AddCus(AddData);
+            Random rand = new Random();
+            p_AddAll.AccNumber = rand.Next(50);
+            p_AddAll.CardNumber = rand.Next(50);
+            p_AddAll.AccNumber = rand.Next(50);
+            p_AddAll.Pin = rand.Next(50);
+
+            _Customer.AddCus(p_AddAll);
+            _Customer.AddPin(p_AddAll);
+            _Customer.AddCus(p_AddAll);
         }
 
 
@@ -30,12 +35,7 @@ namespace CoderBebopBL
 
         public void AddPin(int p_pin)
         {
-            Random rand = new Random();
-            p_pin = rand.Next(50);
-
-            AddData.Pin = p_pin;
-
-            _Customer.AddPin(AddData);
+            throw new NotImplementedException();
         }
 
         public List<Customer> GetallCustomer()
