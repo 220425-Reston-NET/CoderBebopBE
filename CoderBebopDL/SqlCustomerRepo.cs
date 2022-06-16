@@ -1,5 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿
 using CoderBebopModel;
+using Microsoft.Data.SqlClient;
 
 namespace CoderBebopDL
 {

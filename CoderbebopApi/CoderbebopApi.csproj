@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.11.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoderBebopBL\CoderBebopBL.csproj" />
+    <ProjectReference Include="..\CoderBebopDL\CoderBebopDL.csproj" />
+    <ProjectReference Include="..\CoderBebopModel\CoderBebopModel.csproj" />
   </ItemGroup>
 
 </Project>
