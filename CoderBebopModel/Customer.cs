@@ -101,6 +101,10 @@ public class Customer
             } 
         }
 
+        public int CAccID { get; set; }
+        public int SAccID { get; set; }
+        public int MAccID { get; set; }
+
 
 
 
