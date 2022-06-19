@@ -14,17 +14,13 @@ namespace CoderBebopBL
 
         public void AddCus(Customer p_AddAll)
         {
-            p_AddAll.CustID = p_AddAll.PinID;
+            _Customer.AddCus(p_AddAll);
+
 
             Random rand = new Random();
-            p_AddAll.AccNumber = rand.Next(50);
-            p_AddAll.CardNumber = rand.Next(50);
-            p_AddAll.AccNumber = rand.Next(50);
-            p_AddAll.Pin = rand.Next(50);
-
-            _Customer.AddCus(p_AddAll);
-           
-            _Customer.AddCus(p_AddAll);
+            p_AddAll.Pin = rand.Next(1000,9999);
+            p_AddAll.CardNumber = (Decimal)(rand.NextDouble()*9000000000000000) + 1000000000000000;
+            _Customer.JoinTable(p_AddAll);
         }
 
 
@@ -43,9 +39,9 @@ namespace CoderBebopBL
             return _Customer.GetAll();
         }
 
-        public Customer Search(decimal p_Atm, decimal p1_Atm)
+        public Customer Search(decimal p_Atm, int p1_Atm)
         {
-            throw new NotImplementedException();
+            return _Customer.GetAll().First(Customer => Customer.CardNumber == p_Atm && Customer.Pin == p1_Atm);
         }
     }
 }

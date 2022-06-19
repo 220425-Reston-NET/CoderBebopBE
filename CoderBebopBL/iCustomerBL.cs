@@ -12,6 +12,6 @@ namespace CoderBebopBL
 
         List<Customer> GetallCustomer();
 
-        public Customer Search(decimal p_Atm, decimal p1_Atm);
+        public Customer Search(decimal p_Atm, int p1_Atm);
     }
 }

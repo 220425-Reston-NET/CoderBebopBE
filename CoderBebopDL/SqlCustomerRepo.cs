@@ -38,25 +38,6 @@ namespace CoderBebopDL
             }
         }
 
-        public void AddJoin(Customer p_resource)
-        {
-            string SQLQuery = @"insert into CusCard
-                                 values (@CusID,@PinID,@CardNumber,@AccountNumber)";
-
-             using (SqlConnection con = new SqlConnection(_connectionString))
-             {
-                 con.Open();
-                 SqlCommand command = new SqlCommand(SQLQuery, con);
-
-                 command.Parameters.AddWithValue("@CusID", p_resource.CustID);
-                 command.Parameters.AddWithValue("@PinID", p_resource.PinID);
-                 command.Parameters.AddWithValue("@CardNumber", p_resource.CardNumber);
-                 command.Parameters.AddWithValue("@AccountNumber", p_resource.AccNumber);    
-
-                 command.ExecuteNonQuery();
-             }
-        }
-
         public void AddMonMarket(decimal p_resource)
         {
             throw new NotImplementedException();
@@ -74,9 +55,8 @@ namespace CoderBebopDL
 
         public List<Customer> GetAll()
         {
-            string SQLQuery = @"select c.CusName, c.CusPhone, c.CusAddress, c.cusEmail, cu.AccNumber from Customer c
-                                inner join CusCard cu on c.CusID = cu.CusID
-                                inner join pin p on cu.PinID = p.PinID;";
+            string SQLQuery = @"select b.bcustName, b.bPhoneNumber, b.bAddress, b.bEmail, bc.cardNumber from bankCustomer b
+                                inner join bankCard bc on b.bcustID = bc.bcustID;";
             List<Customer> listofcustomer = new List<Customer>();
 
             using (SqlConnection con = new SqlConnection(_connectionString))
@@ -95,7 +75,7 @@ namespace CoderBebopDL
                         Phone = reader.GetString(1),
                         Address = reader.GetString(2),
                         Email = reader.GetString(3),
-                        AccNumber = reader.GetDecimal(4)
+                        CardNumber = reader.GetDecimal(4)
                     });
                 }
                 
@@ -105,15 +85,30 @@ namespace CoderBebopDL
 
         public void JoinTable(Customer p_resource)
         {
-            throw new NotImplementedException();
+            string SQLQuery = @"insert into bankCard
+                                 values (@bcustID,@accID,@savAccID,@marAccBalance,@cardPin,@cardNumber)";
+
+             using (SqlConnection con = new SqlConnection(_connectionString))
+             {
+                 con.Open();
+                 SqlCommand command = new SqlCommand(SQLQuery, con);
+
+                 command.Parameters.AddWithValue("@bcusID", p_resource.CustID);
+                 command.Parameters.AddWithValue("@accID", p_resource.CustID);
+                 command.Parameters.AddWithValue("@savAccID", p_resource.CustID);
+                 command.Parameters.AddWithValue("@marAccBalance", p_resource.CustID);
+                 command.Parameters.AddWithValue("@cardPin", p_resource.Pin);
+                 command.Parameters.AddWithValue("@cardNumber", p_resource.CardNumber);    
+
+                 command.ExecuteNonQuery();
+             }
         }
 
         public void verify(decimal p_resource, int p_resource1)
         {
-            string SQLQuery = @"select c.CusName, c.CusPhone, c.CusAddress, cu.AccNumber from Customer c
-                                 inner join CusCard cu on c.CusID = cu.CusID
-                                 inner join pin p on cu.PinID = p.PinID
-                                 where cu.CardNumber = @CardNumber and p.Pin = @Pin";
+            string SQLQuery = @"select b.bcustName, b.bPhoneNumber, b.bAddress, b.bEmail, bc.cardNumber from bankCustomer b
+                                inner join bankCard bc on b.bcustID = bc.bcustID
+                                where bc.cardNumber = @cardNumber and bc.cardPin = @Pin;";
 
              using(SqlConnection con = new SqlConnection(_connectionString))
              {
@@ -122,7 +117,7 @@ namespace CoderBebopDL
                  SqlCommand command = new SqlCommand(SQLQuery, con);
 
 
-                 command.Parameters.AddWithValue("@CardNumber", p_resource);
+                 command.Parameters.AddWithValue("@cardNumber", p_resource);
                  command.Parameters.AddWithValue("@Pin", p_resource1);
 
                  command.ExecuteNonQuery();

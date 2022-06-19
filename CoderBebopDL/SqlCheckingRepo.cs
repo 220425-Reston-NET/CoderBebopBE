@@ -79,7 +79,7 @@ namespace CoderBebopDL
 
         public void WithdrawMoney(CheckingAccount p_resource)
         {
-           string SQLQuery = @"update account
+           string SQLQuery = @" update account
                                 set accBalance = accBalance - @accBalance
                                 where accID = @accID";
 
