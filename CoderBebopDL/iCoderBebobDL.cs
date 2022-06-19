@@ -6,9 +6,17 @@ namespace CoderBebopDL
     {
         void AddCus(T p_resource);
 
-        void AddJoin(T p_resource);
+        void AddChecking(decimal p_resource);
 
-        void AddPin(T p_resource);
+        void AddSavings(decimal p_resource);
+
+        void AddMonMarket(decimal p_resource);
+
+        void DepositMoney(T p_resource);
+
+        void WithdrawMoney(T p_resource);
+
+        void JoinTable(T p_resource);
 
         List<Customer> GetAll();
 

@@ -14,9 +14,14 @@ namespace CoderBebopDL
             this._connectionString = connectionString;
         }
 
+        public void AddChecking(decimal p_resource)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddCus(Customer p_resource)
         {
-            string SQLQuery = @"insert into Customer
+            string SQLQuery = @"insert into bankCustomer
                                 values (@CusName,@CusPhone,@CusAddress,@cusEmail)";
 
             using (SqlConnection con = new SqlConnection(_connectionString))
@@ -52,22 +57,19 @@ namespace CoderBebopDL
              }
         }
 
-        public void AddPin(Customer p_resource)
+        public void AddMonMarket(decimal p_resource)
         {
-             string SQLQuery = @"insert into Pin
-                               values (@Pin)";
+            throw new NotImplementedException();
+        }
 
-         using (SqlConnection con = new SqlConnection(_connectionString))
-             {
+        public void AddSavings(decimal p_resource)
+        {
+            throw new NotImplementedException();
+        }
 
-                 con.Open();
-
-                 SqlCommand command = new SqlCommand(SQLQuery, con);
-
-                 command.Parameters.AddWithValue("@Pin", p_resource.Pin);
-
-                 command.ExecuteNonQuery();
-             }
+        public void DepositMoney(Customer p_resource)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Customer> GetAll()
@@ -101,6 +103,11 @@ namespace CoderBebopDL
             }
         }
 
+        public void JoinTable(Customer p_resource)
+        {
+            throw new NotImplementedException();
+        }
+
         public void verify(decimal p_resource, int p_resource1)
         {
             string SQLQuery = @"select c.CusName, c.CusPhone, c.CusAddress, cu.AccNumber from Customer c
@@ -120,6 +127,11 @@ namespace CoderBebopDL
 
                  command.ExecuteNonQuery();
              }
+        }
+
+        public void WithdrawMoney(Customer p_resource)
+        {
+            throw new NotImplementedException();
         }
     }
 }

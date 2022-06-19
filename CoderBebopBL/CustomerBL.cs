@@ -23,7 +23,7 @@ namespace CoderBebopBL
             p_AddAll.Pin = rand.Next(50);
 
             _Customer.AddCus(p_AddAll);
-            _Customer.AddPin(p_AddAll);
+           
             _Customer.AddCus(p_AddAll);
         }
 
