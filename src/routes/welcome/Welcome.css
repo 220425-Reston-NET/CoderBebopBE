@@ -1,0 +1,42 @@
+.welcome-container{
+    display: flex;
+    flex-direction: column;
+    flex-flow: column wrap;
+    align-items: center;
+} 
+
+.create-container{
+    order:2;
+    margin-top: -250px;
+    margin-right: 450px;
+    align-self: flex-end;
+    text-align: center;
+}
+
+.input-container{
+    order:1;
+    width: 400px;
+    margin-top: 200px;
+    margin-left: 350px;
+    align-self: flex-start;
+}
+
+.input-container input{
+    margin-top: 40px;
+    width: 100%;
+}
+
+.topmarg{
+    margin-top: 40px;
+}
+
+/* body{
+    height: 100vh;
+    background: linear-gradient(
+        to right,
+        pink 0%,
+        pink 50%,
+        paleturquoise 50%,
+        paleturquoise 100%
+    );
+} */

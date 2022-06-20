@@ -1,0 +1,19 @@
+.mainmenu{
+    display: flex;
+    flex-direction: column;
+    flex-flow: column wrap;
+    align-items: center;
+    margin-top: 250px;
+}
+
+.container{
+    order:0;
+    width: 400px;
+    margin-top: 100px;
+    text-align: center;
+    align-self: flex-start;
+}
+
+.rightmarg{
+    margin-right: 20px;
+}
