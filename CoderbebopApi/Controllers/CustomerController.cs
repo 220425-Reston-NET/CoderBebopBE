@@ -8,10 +8,17 @@ namespace CoderbebopApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase {
-        private iCustomerBL _custBL;
 
-        public CustomerController(iCustomerBL custBL)
+        private readonly iMarketBL _marketBL;
+        private readonly iSavingsBL _savingsBL;
+        private readonly iCheckingBL _checkBL;
+        private readonly iCustomerBL _custBL;
+
+        public CustomerController(iMarketBL marketBL, iSavingsBL savingsBL, iCheckingBL checkBL, iCustomerBL custBL)
         {
+            _marketBL = marketBL;
+            _savingsBL = savingsBL;
+            _checkBL = checkBL;
             _custBL = custBL;
         }
 
@@ -25,21 +32,25 @@ namespace CoderbebopApi.Controllers
         //     }
         //     catch (SqlException)
         //     {
-                
+
         //         return NotFound("Error: Customer Directory Not Present")
         //     }
         // }
 
         [HttpPost("AddCustomer")]
-        public IActionResult AddCustomer([FromBody] Customer c_cust)
+        public IActionResult AddCustomer( decimal c_checking, decimal c_savings, decimal c_market, [FromBody] Customer c_cust)
         {
             try
             {
+                _checkBL.AddCheckingAcc(c_checking);
+                _marketBL.AddMarketAcc(c_market);
+                _savingsBL.AddSavingsAcc(c_savings);
+
                 _custBL.AddCus(c_cust);
 
                 return Created("New Customer has been entered into the databse.", c_cust);
             }
-            catch (SqlException)
+            catch (System.AccessViolationException)
             {
                 
                 return Conflict();
