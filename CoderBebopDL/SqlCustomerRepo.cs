@@ -85,6 +85,10 @@ namespace CoderBebopDL
 
         public void JoinTable(Customer p_resource)
         {
+            p_resource.CustID = p_resource.CAccID;
+            p_resource.CAccID = p_resource.SAccID;
+            p_resource.SAccID = p_resource.MAccID;
+
             string SQLQuery = @"insert into bankCard
                                  values (@bcustID,@accID,@savAccID,@marAccBalance,@cardPin,@cardNumber)";
 
@@ -93,10 +97,10 @@ namespace CoderBebopDL
                  con.Open();
                  SqlCommand command = new SqlCommand(SQLQuery, con);
 
-                 command.Parameters.AddWithValue("@bcusID", p_resource.CustID);
-                 command.Parameters.AddWithValue("@accID", p_resource.CustID);
-                 command.Parameters.AddWithValue("@savAccID", p_resource.CustID);
-                 command.Parameters.AddWithValue("@marAccBalance", p_resource.CustID);
+                 command.Parameters.AddWithValue("@bcustID", p_resource.CustID);
+                 command.Parameters.AddWithValue("@accID", p_resource.CAccID);
+                 command.Parameters.AddWithValue("@savAccID", p_resource.SAccID);
+                 command.Parameters.AddWithValue("@marAccBalance", p_resource.MAccID);
                  command.Parameters.AddWithValue("@cardPin", p_resource.Pin);
                  command.Parameters.AddWithValue("@cardNumber", p_resource.CardNumber);    
 

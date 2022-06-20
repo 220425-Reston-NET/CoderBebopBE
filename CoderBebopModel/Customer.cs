@@ -8,7 +8,7 @@ public class Customer
     public int CustID { 
         get {return _custId; }
         set {
-            if (value > 0)
+            if (value >= 0)
             {
                 _custId = value;
             }

@@ -25,7 +25,7 @@ namespace CoderBebopDL
 
         public void AddMonMarket(decimal p_resource)
         {
-            string SQLQuery = @"insert into account
+            string SQLQuery = @"insert into marAccount
                                 values ('Money Market',@accNumber,0,'Test')";
 
             using (SqlConnection con = new SqlConnection(_connectionString))

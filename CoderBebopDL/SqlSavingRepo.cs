@@ -30,7 +30,7 @@ namespace CoderBebopDL
 
         public void AddSavings(decimal p_resource)
         {
-            string SQLQuery = @"insert into account
+            string SQLQuery = @"insert into savAccount
                                 values ('Savings',@accNumber,0,'Test')";
 
             using (SqlConnection con = new SqlConnection(_connectionString))
