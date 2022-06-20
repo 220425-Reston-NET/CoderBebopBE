@@ -55,7 +55,7 @@ namespace CoderBebopDL
 
         public List<Customer> GetAll()
         {
-            string SQLQuery = @"select b.bcustName, b.bPhoneNumber, b.bAddress, b.bEmail, bc.cardNumber from bankCustomer b
+            string SQLQuery = @"select b.bcustID, b.bcustName, b.bPhoneNumber, b.bAddress, b.bEmail, bc.cardNumber from bankCustomer b
                                 inner join bankCard bc on b.bcustID = bc.bcustID;";
             List<Customer> listofcustomer = new List<Customer>();
 
@@ -71,11 +71,12 @@ namespace CoderBebopDL
                 {
                     listofcustomer.Add(new Customer(){
 
-                        Name = reader.GetString(0),
-                        Phone = reader.GetString(1),
-                        Address = reader.GetString(2),
-                        Email = reader.GetString(3),
-                        CardNumber = reader.GetDecimal(4)
+                        CustID = reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        Phone = reader.GetString(2),
+                        Address = reader.GetString(3),
+                        Email = reader.GetString(4),
+                        CardNumber = reader.GetDecimal(5)
                     });
                 }
                 
@@ -88,19 +89,20 @@ namespace CoderBebopDL
             p_resource.CustID = p_resource.CAccID;
             p_resource.CAccID = p_resource.SAccID;
             p_resource.SAccID = p_resource.MAccID;
+            p_resource.MAccID = p_resource.CustID;
 
             string SQLQuery = @"insert into bankCard
-                                 values (@bcustID,@accID,@savAccID,@marAccBalance,@cardPin,@cardNumber)";
+                                 values (@accID,@savAccID,@marAccBalance,@cardPin,@cardNumber)";
 
              using (SqlConnection con = new SqlConnection(_connectionString))
              {
                  con.Open();
                  SqlCommand command = new SqlCommand(SQLQuery, con);
 
-                 command.Parameters.AddWithValue("@bcustID", p_resource.CustID);
-                 command.Parameters.AddWithValue("@accID", p_resource.CAccID);
-                 command.Parameters.AddWithValue("@savAccID", p_resource.SAccID);
-                 command.Parameters.AddWithValue("@marAccBalance", p_resource.MAccID);
+
+                 command.Parameters.AddWithValue("@accID", p_resource.CustID);
+                 command.Parameters.AddWithValue("@savAccID", p_resource.CustID);
+                 command.Parameters.AddWithValue("@marAccBalance", p_resource.CustID);
                  command.Parameters.AddWithValue("@cardPin", p_resource.Pin);
                  command.Parameters.AddWithValue("@cardNumber", p_resource.CardNumber);    
 
@@ -110,7 +112,7 @@ namespace CoderBebopDL
 
         public void verify(decimal p_resource, int p_resource1)
         {
-            string SQLQuery = @"select b.bcustName, b.bPhoneNumber, b.bAddress, b.bEmail, bc.cardNumber from bankCustomer b
+            string SQLQuery = @"select  b.bcustID, b.bcustName, b.bPhoneNumber, b.bAddress, b.bEmail, bc.cardNumber from bankCustomer b
                                 inner join bankCard bc on b.bcustID = bc.bcustID
                                 where bc.cardNumber = @cardNumber and bc.cardPin = @Pin;";
 

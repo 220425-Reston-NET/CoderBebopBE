@@ -15,11 +15,14 @@ namespace CoderBebopBL
         public void AddCus(Customer p_AddAll)
         {
             _Customer.AddCus(p_AddAll);
-
+            
 
             Random rand = new Random();
+
             p_AddAll.Pin = rand.Next(1000,9999);
             p_AddAll.CardNumber = (Decimal)(rand.NextDouble()*9000000000000000) + 1000000000000000;
+
+
             _Customer.JoinTable(p_AddAll);
         }
 
