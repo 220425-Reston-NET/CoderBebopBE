@@ -14,6 +14,11 @@ namespace CoderBebopBL
 
         public void AddCus(Customer p_AddAll)
         {
+
+            Customer foundedcustomer = Search(p_AddAll.CardNumber, p_AddAll.Pin);
+
+            if (foundedcustomer == null)
+            {
             _Customer.AddCus(p_AddAll);
             
 
@@ -24,6 +29,13 @@ namespace CoderBebopBL
 
 
             _Customer.JoinTable(p_AddAll);
+            }
+
+            else
+            {
+                throw new InvalidOperationException ("Customer already exist!");
+            }
+
         }
 
 

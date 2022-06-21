@@ -57,6 +57,20 @@ namespace CoderbebopApi.Controllers
             }
         }
 
+        [HttpGet("SearchCustomer")]
+        public IActionResult SearchCustomer(decimal cardNumber, int Pin)
+        {
+            try
+            {
+                return Ok(_custBL.Search(cardNumber,Pin));
+            }
+            catch (System.AccessViolationException)
+            {
+                
+                return Conflict();
+            }
+        }
+
         // [HttpGet("SearchCustomerByName")]
         // public IActionResult SearchCustomer([FromQuery] string custName){
         //     try

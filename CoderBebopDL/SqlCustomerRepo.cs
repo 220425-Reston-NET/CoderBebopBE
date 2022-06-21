@@ -55,7 +55,7 @@ namespace CoderBebopDL
 
         public List<Customer> GetAll()
         {
-            string SQLQuery = @"select b.bcustID, b.bcustName, b.bPhoneNumber, b.bAddress, b.bEmail, bc.cardNumber from bankCustomer b
+            string SQLQuery = @"select b.bcustID, b.bcustName, b.bPhoneNumber, b.bAddress, b.bEmail, bc.cardNumber, bc.cardPin from bankCustomer b
                                 inner join bankCard bc on b.bcustID = bc.bcustID;";
             List<Customer> listofcustomer = new List<Customer>();
 
@@ -76,7 +76,8 @@ namespace CoderBebopDL
                         Phone = reader.GetString(2),
                         Address = reader.GetString(3),
                         Email = reader.GetString(4),
-                        CardNumber = reader.GetDecimal(5)
+                        CardNumber = reader.GetInt64(5),
+                        Pin = reader.GetInt32(6),
                     });
                 }
                 

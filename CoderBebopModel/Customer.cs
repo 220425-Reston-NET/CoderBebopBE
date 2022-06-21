@@ -40,21 +40,6 @@ public class Customer
 
     public string Email { get; set; }
 
-     private decimal _accNumber;
-
-        public decimal AccNumber { 
-        get {return _accNumber; }
-        set {
-            if (value > 1000000000 && value < 9999999999)
-            {
-                _accNumber = value;
-            }
-            else
-            {
-                throw new ValidationException("Card Number is not valid");
-            }
-            } 
-        }
         private decimal _cardNumber;
 
         public decimal CardNumber { 
