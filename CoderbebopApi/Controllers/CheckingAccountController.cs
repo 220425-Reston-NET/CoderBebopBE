@@ -9,17 +9,11 @@ namespace CoderbebopApi.Controllers
     [ApiController]
     public class CheckingAccountController : ControllerBase
     {
-        private iCheckingBL _checkingBL;
+        private readonly iCheckingBL _checkingBL;
         public CheckingAccountController(iCheckingBL p_accBL)
         {
             _checkingBL = p_accBL;
         }
-
-        // [HttpGet("ViewCheckingAccount")]
-        // public IActionResult ViewCheckingAccount([FromQuery] int p_accBL)
-        // {
-        //     return Ok(_checkingBL.ViewCheckingAccount(p_accBL));
-        // }
 
         [HttpPost("Deposit")]
         public IActionResult UpdateDeposit([FromBody] int p_balance, int p_balance1)

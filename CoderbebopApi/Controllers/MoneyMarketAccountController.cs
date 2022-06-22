@@ -9,17 +9,11 @@ namespace CoderbebopApi.Controllers
     [ApiController]
     public class MoneyMarketAccountController : ControllerBase
     {
-        private iMarketBL _marketBL;
+        private readonly iMarketBL _marketBL;
         public MoneyMarketAccountController(iMarketBL m_marketBL)
         {
             _marketBL = m_marketBL;
         }
-
-        // [HttpGet("ViewMoneyMarketAccount")]
-        // public IActionResult ViewMoneyMarketAccount([FromQuery] int c_mAccId)
-        // {
-        //     return Ok(_marketBL.ViewMoneyMarketAccount(c_mAccId));
-        // }
 
         [HttpPost("Deposit")]
         public IActionResult UpdateDeposit([FromBody] int p_balance, int p_balance1)

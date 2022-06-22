@@ -9,17 +9,11 @@ namespace CoderbebopApi.Controllers
     [ApiController]
     public class SavingsAccountController : ControllerBase
     {
-        private iSavingsBL _savingsBL;
+        private readonly iSavingsBL _savingsBL;
         public SavingsAccountController(iSavingsBL s_atmBL)
         {
             _savingsBL = s_atmBL;
         }
-
-        // [HttpGet("ViewSavingsAccount")]
-        // public IActionResult ViewSavingsAccount([FromQuery] int c_sAccId)
-        // {
-        //     return Ok(_savingsBL.ViewCheckingAccount(c_sAccId));
-        // }
 
         [HttpPost("Deposit")]
         public IActionResult UpdateDeposit([FromBody] int p_balance, int p_balance1)
