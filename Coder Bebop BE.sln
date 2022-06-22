@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoderBebopDL", "CoderBebopD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoderbebopApi", "CoderbebopApi\CoderbebopApi.csproj", "{0DAAD6E1-AD55-42A2-9E02-367BFA8BDB78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoderBebopTest", "CoderBebopTest\CoderBebopTest.csproj", "{D8B498C9-756A-4D80-BCD5-9C08B59DE45F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{0DAAD6E1-AD55-42A2-9E02-367BFA8BDB78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DAAD6E1-AD55-42A2-9E02-367BFA8BDB78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DAAD6E1-AD55-42A2-9E02-367BFA8BDB78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B498C9-756A-4D80-BCD5-9C08B59DE45F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B498C9-756A-4D80-BCD5-9C08B59DE45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B498C9-756A-4D80-BCD5-9C08B59DE45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B498C9-756A-4D80-BCD5-9C08B59DE45F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
