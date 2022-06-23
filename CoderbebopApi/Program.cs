@@ -1,8 +1,13 @@
 using CoderBebopBL;
 using CoderBebopDL;
 using CoderBebopModel;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("./logs/user.txt")
+    .CreateLogger();
+
 
 // Add services to the container.
 

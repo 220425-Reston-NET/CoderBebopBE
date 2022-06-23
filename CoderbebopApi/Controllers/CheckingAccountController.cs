@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using CoderBebopBL;
 using Microsoft.Data.SqlClient;
 using CoderBebopModel;
+using Serilog;
 
 namespace CoderbebopApi.Controllers
 {
@@ -9,24 +10,23 @@ namespace CoderbebopApi.Controllers
     [ApiController]
     public class CheckingAccountController : ControllerBase
     {
-        private iCheckingBL _checkingBL;
+        private readonly iCheckingBL _checkingBL;
         public CheckingAccountController(iCheckingBL p_accBL)
         {
             _checkingBL = p_accBL;
         }
-
-        // [HttpGet("ViewCheckingAccount")]
-        // public IActionResult ViewCheckingAccount([FromQuery] int p_accBL)
-        // {
-        //     return Ok(_checkingBL.ViewCheckingAccount(p_accBL));
-        // }
 
         [HttpPost("Deposit")]
         public IActionResult UpdateDeposit([FromBody] int p_balance, int p_balance1)
         {
             try
             {
+                Log.Information("Customer has deposited $" + p_balance1 + " into Checkings Account.");
+                
+
                 _checkingBL.UpdateDeposit(p_balance, p_balance1);
+
+                Log.Information("New Checking Account Balance is $" + p_balance + ".");
 
                 return Created("Your money has been deposited!", p_balance);
             }
@@ -42,7 +42,12 @@ namespace CoderbebopApi.Controllers
         {
             try
             {
+                Log.Information("Customer has withdrew $" + p_balance1 + " from Checkings Account.");
+                
+
                 _checkingBL.UpdateWithdraw(p_balance, p_balance1);
+
+                Log.Information("New Checking Account Balance is $" + p_balance + ".");
 
                 return Created("Your money has been withdrawn!", p_balance);
             }

@@ -12,20 +12,18 @@ namespace CoderBebopBL
             _Customer = p_Customer;
         }
 
-        public void AddCus(Customer p_AddAll)
+        public void AddCus(Customer p_addAll)
         {
-
-         
-            _Customer.AddCus(p_AddAll);
+            _Customer.AddCus(p_addAll);
             
 
             Random rand = new Random();
 
-            p_AddAll.Pin = rand.Next(1000,9999);
-            p_AddAll.CardNumber = (Decimal)(rand.NextDouble()*9000000000000000) + 1000000000000000;
+            p_addAll.Pin = rand.Next(1000,9999);
+            p_addAll.CardNumber = (Decimal)(rand.NextDouble()*9000000000000000) + 1000000000000000;
 
 
-            _Customer.JoinTable(p_AddAll);
+            _Customer.JoinTable(p_addAll);
 
         }
 
