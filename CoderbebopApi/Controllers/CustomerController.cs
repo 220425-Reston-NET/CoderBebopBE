@@ -22,20 +22,6 @@ namespace CoderbebopApi.Controllers
             _custBL = custBL;
         }
 
-        // [HttpGet("GetAllCustomer")]
-        // public async Task<IActionResult> GetAllCustomer(){
-        //     try
-        //     {
-        //         List<Customer> listOfCurrentCustomers = await _custBL.GetAllCustomerAsync();
-
-        //         return Ok(listOfCurrentCustomers);
-        //     }
-        //     catch (SqlException)
-        //     {
-
-        //         return NotFound("Error: Customer Directory Not Present")
-        //     }
-        // }
 
         [HttpPost("AddCustomer")]
         public IActionResult AddCustomer( decimal c_checking, decimal c_savings, decimal c_market, [FromBody] Customer c_cust)
@@ -71,17 +57,19 @@ namespace CoderbebopApi.Controllers
             }
         }
 
-        // [HttpGet("SearchCustomerByName")]
-        // public IActionResult SearchCustomer([FromQuery] string custName){
-        //     try
-        //     {
-        //         return Ok(_custBL.SearchCustomerByName(custName));
-        //     }
-        //     catch (SqlException)
-        //     {
+         [HttpGet("GetAllCustomers")]
+        public IActionResult GetAllCustomers()
+        {
+            try
+            {
+                List<Customer> currentlistofcustomers = _custBL.GetallCustomer();
+                return Ok(currentlistofcustomers);
+            }
+            catch (System.AccessViolationException)
+            {
                 
-        //         return Conflict;
-        //     }
-        // }
+                return Conflict();
+            }
+        }
     }
 }
