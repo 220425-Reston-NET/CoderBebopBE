@@ -16,19 +16,19 @@ namespace CoderbebopApi.Controllers
             _checkingBL = p_accBL;
         }
 
-        [HttpPost("Deposit")]
-        public IActionResult UpdateDeposit([FromBody] int p_balance, int p_balance1)
+        [HttpPut("Deposit")]
+        public IActionResult UpdateDeposit([FromQuery] int p_balance, int p_ID)
         {
             try
             {
-                Log.Information("Customer has deposited $" + p_balance1 + " into Checkings Account.");
+                Log.Information("Customer has deposited $" + p_balance + " into Checkings Account.");
                 
 
-                _checkingBL.UpdateDeposit(p_balance, p_balance1);
+                _checkingBL.UpdateDeposit(p_balance, p_ID);
 
                 Log.Information("New Checking Account Balance is $" + p_balance + ".");
 
-                return Created("Your money has been deposited!", p_balance);
+                return Ok("Your money has been deposited! " + p_balance);
             }
             catch (SqlException)
             {
@@ -37,19 +37,19 @@ namespace CoderbebopApi.Controllers
             }
         }
 
-        [HttpPost("Withdraw")]
-        public IActionResult UpdateWithdraw([FromBody] int p_balance, int p_balance1 )
+        [HttpPut("Withdraw")]
+        public IActionResult UpdateWithdraw([FromQuery] int p_balance, int p_ID )
         {
             try
             {
-                Log.Information("Customer has withdrew $" + p_balance1 + " from Checkings Account.");
+                Log.Information("Customer has withdrew $" + p_balance + " from Checkings Account.");
                 
 
-                _checkingBL.UpdateWithdraw(p_balance, p_balance1);
+                _checkingBL.UpdateWithdraw(p_balance, p_ID);
 
                 Log.Information("New Checking Account Balance is $" + p_balance + ".");
 
-                return Created("Your money has been withdrawn!", p_balance);
+                return Ok("Your money has been withdrawn! " + p_balance);
             }
             catch (SqlException)
             {

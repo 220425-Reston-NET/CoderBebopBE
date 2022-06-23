@@ -1,0 +1,8 @@
+2022-06-23 14:24:41.861 -04:00 [INF] Customer has deposited $100 into Checkings Account.
+2022-06-23 14:24:42.512 -04:00 [INF] New Checking Account Balance is $100.
+2022-06-23 14:25:01.135 -04:00 [INF] Customer has deposited $500 into Checkings Account.
+2022-06-23 14:25:01.159 -04:00 [INF] New Checking Account Balance is $500.
+2022-06-23 14:27:09.454 -04:00 [INF] Customer has withdrew $1 from Checkings Account.
+2022-06-23 14:27:09.775 -04:00 [INF] New Checking Account Balance is $200.
+2022-06-23 14:27:40.883 -04:00 [INF] Customer has withdrew $1 from Checkings Account.
+2022-06-23 14:27:40.913 -04:00 [INF] New Checking Account Balance is $700.

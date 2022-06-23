@@ -16,19 +16,19 @@ namespace CoderbebopApi.Controllers
             _marketBL = m_marketBL;
         }
 
-        [HttpPost("Deposit")]
-        public IActionResult UpdateDeposit([FromBody] int p_balance, int p_balance1)
+        [HttpPut("Deposit")]
+        public IActionResult UpdateDeposit([FromQuery] int p_balance, int p_ID)
         {
             try
             {
 
-                Log.Information("Customer has deposited $" + p_balance1 + " into Money Market Account.");
+                Log.Information("Customer has deposited $" + p_balance + " into Money Market Account.");
                 
-                _marketBL.UpdateDeposit(p_balance, p_balance1);
+                _marketBL.UpdateDeposit(p_balance, p_ID);
 
                 Log.Information("New Money Market Account Balance is $" + p_balance + ".");
 
-                return Created("Your money has been deposited!", p_balance);
+                return Ok("Your money has been deposited!");
             }
             catch (SqlException)
             {
@@ -37,19 +37,19 @@ namespace CoderbebopApi.Controllers
             }
         }
 
-        [HttpPost("Withdraw")]
-        public IActionResult UpdateWithdraw([FromBody] int p_balance, int p_balance1 )
+        [HttpPut("Withdraw")]
+        public IActionResult UpdateWithdraw([FromQuery] int p_balance, int p_ID )
         {
             try
             {
 
-                Log.Information("Customer has withdrew $" + p_balance1 + " from Money Market Account.");
+                Log.Information("Customer has withdrew $" + p_balance + " from Money Market Account.");
 
-                _marketBL.UpdateWithdraw(p_balance, p_balance1);
+                _marketBL.UpdateWithdraw(p_balance, p_ID);
 
                 Log.Information("New Money Market Account Balance is $" + p_balance + ".");
 
-                return Created("Your money has been withdrawn!", p_balance);
+                return Ok("Your money has been withdrawn!");
             }
             catch (SqlException)
             {

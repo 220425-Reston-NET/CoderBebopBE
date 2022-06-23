@@ -16,20 +16,20 @@ namespace CoderbebopApi.Controllers
             _savingsBL = s_atmBL;
         }
 
-        [HttpPost("Deposit")]
-        public IActionResult UpdateDeposit([FromBody] int p_balance, int p_balance1)
+        [HttpPut("Deposit")]
+        public IActionResult UpdateDeposit([FromQuery] int p_balance, int p_ID)
         {
             try
             {
 
-                Log.Information("Customer has deposited $" + p_balance1 + " into Savings Account.");
+                Log.Information("Customer has deposited $" + p_balance + " into Savings Account.");
                 
                 
-                _savingsBL.UpdateDeposit(p_balance, p_balance1);
+                _savingsBL.UpdateDeposit(p_balance, p_ID);
 
                 Log.Information("New Savings Account Balance is $" + p_balance + ".");
 
-                return Created("Your money has been deposited!", p_balance);
+                return Ok("Your money has been deposited!");
             }
             catch (SqlException)
             {
@@ -38,19 +38,19 @@ namespace CoderbebopApi.Controllers
             }
         }
 
-        [HttpPost("Withdraw")]
-        public IActionResult UpdateWithdraw([FromBody] int p_balance, int p_balance1)
+        [HttpPut("Withdraw")]
+        public IActionResult UpdateWithdraw([FromQuery] int p_balance, int p_ID)
         {
             try
             {
 
-                Log.Information("Customer has withdrew $" + p_balance1 + " from Savings Account.");
+                Log.Information("Customer has withdrew $" + p_balance + " from Savings Account.");
 
-                _savingsBL.UpdateWithdraw(p_balance, p_balance1);
+                _savingsBL.UpdateWithdraw(p_balance, p_ID);
 
                 
 
-                return Created("Your money has been withdrawn!", p_balance);
+                return Ok("Your money has been withdrawn!");
             }
             catch (SqlException)
             {

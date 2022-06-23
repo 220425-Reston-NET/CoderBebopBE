@@ -22,7 +22,20 @@ namespace CoderBebopModel
 
         public String MAccType { get; set; }
         public Decimal MAccNumber { get; set; }
-        public Double MAccBalance { get; set; }
+       private Double _MAccBalance;
+        public Double MAccBalance{
+            get {return _MAccBalance;}
+            set
+            {
+                if(value > 0)
+                {
+                    _MAccBalance = value;
+                }
+                else{
+                    throw new ValidationException("Your balance must be greater than 0");
+                }
+            }
+        }
         public String MAccHistory { get; set; }
     }
 }

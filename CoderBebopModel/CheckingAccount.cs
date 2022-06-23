@@ -22,7 +22,20 @@ namespace CoderBebopModel
 
         public String CAccType { get; set; }
         public Decimal CAccNumber { get; set; }
-        public Double CAccBalance { get; set; }
+        private Double _CAccBalance;
+        public Double CAccBalance{
+            get {return _CAccBalance;}
+            set
+            {
+                if(value > 0)
+                {
+                    _CAccBalance = value;
+                }
+                else{
+                    throw new ValidationException("Your balance must be greater than 0");
+                }
+            }
+        }
         public String CAccHistory { get; set; }
     }
 }
