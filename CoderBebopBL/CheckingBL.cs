@@ -20,6 +20,11 @@ namespace CoderBebopBL
             _Checking.AddChecking(p_account);
         }
 
+        public List<CheckingAccount> GetallCustomer()
+        {
+            return _Checking.GetAll();
+        }
+
         public void UpdateDeposit(int p_balance, int p_accID)
         {
             CheckingAccount updatebalance = new CheckingAccount();
@@ -39,5 +44,14 @@ namespace CoderBebopBL
 
             _Checking.WithdrawMoney(updatebalance);
         }
+
+        public CheckingAccount viewbalance(int p_accID)
+        {
+        
+           
+            return _Checking.GetAll().First(CheckingAccount => CheckingAccount.CAccID == p_accID);
+           
+        }
+
     }
 }

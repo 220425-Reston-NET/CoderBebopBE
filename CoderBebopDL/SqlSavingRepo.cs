@@ -44,6 +44,11 @@ namespace CoderBebopDL
             }
         }
 
+        public void checkbalance(int p_resource)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DepositMoney(SavingsAccount p_resource)
         {
             string SQLQuery = @"update savAccount
@@ -62,7 +67,7 @@ namespace CoderBebopDL
             }
         }
 
-        public List<Customer> GetAll()
+        public List<SavingsAccount> GetAll()
         {
             throw new NotImplementedException();
         }

@@ -18,8 +18,10 @@ namespace CoderBebopDL
 
         void JoinTable(T p_resource);
 
-        List<Customer> GetAll();
+        List<T> GetAll();
 
         void verify(decimal p_resource, int p_resource1);
+
+        void checkbalance(int p_resource);
     }
 }

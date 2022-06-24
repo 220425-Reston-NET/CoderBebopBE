@@ -57,5 +57,19 @@ namespace CoderbebopApi.Controllers
                 return Conflict();
             }
         }
+        [HttpGet("ViewBalance")]
+        public IActionResult ViewBalance(int c_ID)
+        {
+            try
+            {
+                
+                return Ok(_checkingBL.viewbalance(c_ID));
+            }
+            catch (System.AccessViolationException)
+            {
+                
+                return Conflict();
+            }
+        }
     }
 }

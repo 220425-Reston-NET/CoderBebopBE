@@ -4,6 +4,8 @@ namespace CoderBebopModel
 {
     public class CheckingAccount
     {
+
+        public string cName{ get; set;}
         private int _caccId;
         public int CAccID { 
             get {return _caccId;}
@@ -22,12 +24,12 @@ namespace CoderBebopModel
 
         public String CAccType { get; set; }
         public Decimal CAccNumber { get; set; }
-        private Double _CAccBalance;
-        public Double CAccBalance{
+        private decimal _CAccBalance;
+        public decimal CAccBalance{
             get {return _CAccBalance;}
             set
             {
-                if(value > 0)
+                if(value >= 0)
                 {
                     _CAccBalance = value;
                 }

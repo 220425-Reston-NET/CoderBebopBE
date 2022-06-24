@@ -48,6 +48,11 @@ namespace CoderBebopDL
             throw new NotImplementedException();
         }
 
+        public void checkbalance(int p_resource)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DepositMoney(Customer p_resource)
         {
             throw new NotImplementedException();

@@ -44,6 +44,25 @@ namespace CoderBebopDL
             throw new NotImplementedException();
         }
 
+        public void checkbalance(int p_resource)
+        {
+            string SQLQuery = @"select a.accID, b.bcustName, a.accType, a.accBalance from bankCustomer b
+                                inner join bankCard bc on b.bcustID = bc.bcustID
+                                inner join account a on bc.accID = a.accID
+                                where bc.cardPin = @Pin";
+
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand(SQLQuery, con);
+
+                command.Parameters.AddWithValue("@accBalance", p_resource);
+
+
+                command.ExecuteNonQuery();
+            }
+        }
+
         public void DepositMoney(CheckingAccount p_resource)
         {
             string SQLQuery = @"update account
@@ -62,10 +81,35 @@ namespace CoderBebopDL
             }
         }
 
-        public List<Customer> GetAll()
+        public List<CheckingAccount> GetAll()
         {
-            throw new NotImplementedException();
+            string SQLQuery = @"select a.accID, b.bcustName, a.accType, a.accBalance from bankCustomer b
+                                inner join bankCard bc on b.bcustID = bc.bcustID
+                                inner join account a on bc.accID = a.accID";
+            List<CheckingAccount> listofcustomer = new List<CheckingAccount>();
+
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Open();
+
+                SqlCommand command = new SqlCommand(SQLQuery, con);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listofcustomer.Add(new CheckingAccount(){
+                        CAccID = reader.GetInt32(0),
+                        cName = reader.GetString(1),
+                        CAccType = reader.GetString(2),
+                        CAccBalance = reader.GetDecimal(3)
+                        
+                });
+                    
+            }
+            return listofcustomer;
         }
+    }
 
         public void JoinTable(CheckingAccount p_resource)
         {
