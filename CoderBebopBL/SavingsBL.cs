@@ -20,6 +20,11 @@ namespace CoderBebopBL
             _Savings.AddSavings(p_account);
         }
 
+        public List<SavingsAccount> GetallCustomer()
+        {
+            return _Savings.GetAll();
+        }
+
         public void UpdateDeposit(int p_balance, int p_accID)
         {
             SavingsAccount updatebalance = new SavingsAccount();
@@ -36,6 +41,11 @@ namespace CoderBebopBL
             updatebalance.SAccID = p_accID;
 
             _Savings.WithdrawMoney(updatebalance);
+        }
+
+        public SavingsAccount viewbalance(int p_sAccID)
+        {
+            return _Savings.GetAll().First(SavingsAccount => SavingsAccount.SAccID == p_sAccID);
         }
     }
 }

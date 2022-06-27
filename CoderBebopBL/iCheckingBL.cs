@@ -11,6 +11,6 @@ namespace CoderBebopBL
         void UpdateWithdraw(int p_balance, int p_accID);
         List<CheckingAccount> GetallCustomer();
 
-        public CheckingAccount viewbalance(int p_balance);
+        public CheckingAccount viewbalance(int p_accID);
     }
 }

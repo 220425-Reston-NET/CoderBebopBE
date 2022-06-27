@@ -4,6 +4,7 @@ namespace CoderBebopModel
 {
     public class SavingsAccount
     {
+        public string sName{ get; set;}
         private int _saccId;
         public int SAccID { 
             get {return _saccId;}
@@ -22,12 +23,12 @@ namespace CoderBebopModel
 
         public String SAccType { get; set; }
         public Decimal SAccNumber { get; set; }
-        private Double _SAccBalance;
-        public Double SAccBalance{
+        private decimal _SAccBalance;
+        public decimal SAccBalance{
             get {return _SAccBalance;}
             set
             {
-                if(value > 0)
+                if(value >= 0)
                 {
                     _SAccBalance = value;
                 }

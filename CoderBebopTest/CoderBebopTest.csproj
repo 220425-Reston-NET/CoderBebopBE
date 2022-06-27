@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CoderBebopModel\CoderBebopModel.csproj" />
     <ProjectReference Include="..\CoderBebopBL\CoderBebopBL.csproj" />
+    <ProjectReference Include="..\CoderBebopDL\CoderBebopDL.csproj" />
   </ItemGroup>
 
 </Project>

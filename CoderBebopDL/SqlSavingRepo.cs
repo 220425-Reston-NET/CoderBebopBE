@@ -46,7 +46,21 @@ namespace CoderBebopDL
 
         public void checkbalance(int p_resource)
         {
-            throw new NotImplementedException();
+            string SQLQuery = @"select s.savAccID, b.bcustName, s.savAccType, s.savAccBalance from bankCustomer b
+                                inner join bankCard bc on b.bcustID = bc.bcustID
+                                inner join savAccount s on bc.savAccID = s.SavAccID
+                                where bc.cardPin = @Pin";
+
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand(SQLQuery, con);
+
+                command.Parameters.AddWithValue("@accBalance", p_resource);
+
+
+                command.ExecuteNonQuery();
+            }
         }
 
         public void DepositMoney(SavingsAccount p_resource)
@@ -69,7 +83,32 @@ namespace CoderBebopDL
 
         public List<SavingsAccount> GetAll()
         {
-            throw new NotImplementedException();
+            string SQLQuery = @"select s.savAccID, b.bcustName, s.savAccType, s.savAccBalance from bankCustomer b
+                                inner join bankCard bc on b.bcustID = bc.bcustID
+                                inner join savAccount s on bc.savAccID = s.SavAccID";
+            List<SavingsAccount> listofcustomer = new List<SavingsAccount>();
+
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                con.Open();
+
+                SqlCommand command = new SqlCommand(SQLQuery, con);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listofcustomer.Add(new SavingsAccount(){
+                        SAccID = reader.GetInt32(0),
+                        sName = reader.GetString(1),
+                        SAccType = reader.GetString(2),
+                        SAccBalance = reader.GetDecimal(3)
+                        
+                });
+                    
+            }
+            return listofcustomer;
+        }
         }
 
         public void JoinTable(SavingsAccount p_resource)
